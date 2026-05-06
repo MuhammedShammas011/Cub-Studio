@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>theCubStudio — Creative. Unique. Branding.</title>
+  <meta name="description"
+    content="theCubStudio is a futuristic marketing agency breaking conventional growth limits. Branding, content, performance marketing & web design that scales beyond expectations.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/images/cubstudio-logo-square.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+</head>
+
+<body>
+  <!-- Global Animated Grid Overlay -->
+  <div class="grid-overlay" id="gridOverlay"></div>
+
+
+
+  <!-- ─── NAVBAR ─── -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo"><img src="assets/images/cubstudio-logo-wide.png" alt="theCubStudio"></a>
+
+    <div class="nav-controls">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+        <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── SLIDE MENU ─── -->
+  <div class="slide-menu" id="slideMenu">
+    <div class="slide-menu-content">
+      <ul class="slide-nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact" class="modal-trigger">Contact</a></li>
+      </ul>
+      <div class="slide-menu-footer">
+        <a href="#" class="modal-trigger">hellocubstudio@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <h1>TIME IS PRECIOUS!</h1>
+    </div>
+    <div class="particle-field" id="heroParticles"></div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="about" id="about">
+    <div class="about-container reveal">
+      <div class="about-label">
+        <span class="square"></span> ABOUT OUR COMPANY
+      </div>
+
+      <div class="about-top">
+        <div class="about-headline">
+          <h2 class="scroll-reveal-text">
+            <span class="reveal-word">Here</span>
+            <span class="highlight logo-hover-wrap">
+              <span class="text-layer">theCub<br>Studio</span>
+              <img src="assets/images/cubstudio-logo-square.png" alt="theCubStudio" class="logo-layer">
+            </span>
+            <span class="reveal-word">—</span>
+            <span class="reveal-word">creative</span><br>
+            <span class="reveal-word">thinking</span>
+            <span class="reveal-word">meets</span><br>
+            <span class="reveal-word">structured</span>
+            <span class="reveal-word">intelligence.</span>
+          </h2>
+        </div>
+        <div class="about-desc">
+          <p>A marketing approach built on <span class="text-highlight">clarity, creativity, and intent.</span>
+            <span>Branding, content, and strategy</span>designed to connect and perform. <span
+              class="text-highlight">Powered by <a href="https://kerlytix.com" target="_blank"
+                class="text-highlight kerlytix-color"> Kerlytix.</a> where
+              every decision has a reason behind it.
+          </p>
+          <a href="#contact" class="about-btn">More about us <svg xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="about-bottom">
+        <div class="about-feature match-feature">
+          <div class="giphy-container">
+            <iframe src="https://giphy.com/embed/Lx3MfepEpzCPeN1m84" width="200" height="124" frameBorder="0"
+              class="giphy-embed" allowFullScreen></iframe>
+          </div>
+          <div class="feature-header">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+            </span>
+            <h4>Made to match you</h4>
+          </div>
+          <p>Every solution is designed around your goals, not a generic template.</p>
+        </div>
+
+        <div class="about-feature exciting-feature">
+          <div class="giphy-container">
+            <iframe src="https://giphy.com/embed/90F8aUepslB84" width="200" height="128" frameBorder="0"
+              class="giphy-embed" allowFullScreen></iframe>
+          </div>
+          <div class="feature-header">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="square">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                <path
+                  d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+              </svg>
+            </span>
+            <h4>We make it exciting</h4>
+          </div>
+          <p>Starting or growing a business should feel like an adventure, not a chore.</p>
+        </div>
+
+        <div class="about-feature human-feature">
+          <div class="giphy-container">
+            <iframe src="https://giphy.com/embed/VEWigs65WflCSUtbqp" width="200" height="135" frameBorder="0"
+              class="giphy-embed" allowFullScreen></iframe>
+          </div>
+          <div class="feature-header">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                <line x1="9" y1="9" x2="9.01" y2="9" />
+                <line x1="15" y1="9" x2="15.01" y2="9" />
+              </svg>
+            </span>
+            <h4>We take it personal</h4>
+          </div>
+          <p>Business can be serious—but working with us never feels distant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="services-modern" id="services">
+    <div class="services-hero reveal">
+      <h2 class="huge-title">SERVICES<span class="superscript">(4)</span></h2>
+    </div>
+
+    <div class="services-ticker reveal">
+      <span>Precise</span>
+      <span>Structured</span>
+      <span>Focused</span>
+      <span>Visual Language</span>
+    </div>
+
+    <div class="services-container">
+      <div class="services-left">
+        <div class="service-preview-container">
+          <video id="branding-video" class="service-video" muted loop playsinline>
+            <source src="assets/images/0505.mp4" type="video/mp4">
+          </video>
+          <video id="content-video" class="service-video" muted loop playsinline style="display: none;">
+            <source src="assets/images/Content creation.mp4" type="video/mp4">
+          </video>
+          <video id="web-video" class="service-video" muted loop playsinline style="display: none;">
+            <source src="assets/images/webvideo.mp4" type="video/mp4">
+          </video>
+          <video id="performance-video" class="service-video" muted loop playsinline style="display: none;">
+            <source src="assets/images/performancevideo.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="services-right">
+        <div class="service-row reveal">
+          <div class="sr-num">01</div>
+          <h3 class="sr-title">Branding & Identity</h3>
+          <div class="sr-desc">
+            <p>We don’t just design logos, we build brands
+              that hold weight. From naming and positioning to full identity systems,
+              everything is crafted to feel consistent, intentional, and impossible to ignore across every touchpoint.
+            </p>
+          </div>
+          <a href="#contact" class="sr-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              stroke="none">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.71 10.71-4 4A1 1 0 0 1 11 16V8a1 1 0 0 1 1.71-.71l4 4a1 1 0 0 1 0 1.42z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-row reveal">
+          <div class="sr-num">02</div>
+          <h3 class="sr-title">Content Creation</h3>
+          <div class="sr-desc">
+            <p>Content isn’t about posting more — it’s about making people stop. We create visuals, motion, and
+              narratives that earn attention and turn passive viewers into active customers.</p>
+          </div>
+          <a href="#contact" class="sr-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              stroke="none">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.71 10.71-4 4A1 1 0 0 1 11 16V8a1 1 0 0 1 1.71-.71l4 4a1 1 0 0 1 0 1.42z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-row reveal">
+          <div class="sr-num">03</div>
+          <h3 class="sr-title">Performance Marketing</h3>
+          <div class="sr-desc">
+            <p>Running ads is easy. Scaling profit isn’t. We build performance systems across Meta, Google, and beyond
+              that turn ad spend into measurable, repeatable growth.</p>
+          </div>
+          <a href="#contact" class="sr-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              stroke="none">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.71 10.71-4 4A1 1 0 0 1 11 16V8a1 1 0 0 1 1.71-.71l4 4a1 1 0 0 1 0 1.42z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-row reveal">
+          <div class="sr-num">04</div>
+          <h3 class="sr-title">Web Design & Development</h3>
+          <div class="sr-desc">
+            <p>A website should do more than look premium — it should perform. We design and develop high-converting
+              digital experiences built for speed, clarity, and seamless user journeys.</p>
+          </div>
+          <a href="#contact" class="sr-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              stroke="none">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.71 10.71-4 4A1 1 0 0 1 11 16V8a1 1 0 0 1 1.71-.71l4 4a1 1 0 0 1 0 1.42z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CLIENTS INFINITE CAROUSEL ─── -->
+  <section class="clients" id="clients">
+    <div class="ticker-container">
+      <div class="ticker-scroll">
+        <!-- Group 1 -->
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Zeco.png" alt="Kerlytix">
+          </div>
+          <span>ZECOWOOD</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Kerlytix Logo Icon PNG.png" alt="Kerlytix">
+          </div>
+          <span>Kerlytix</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/ORIGIN.png" alt="Origin Rack">
+          </div>
+          <span>Origin Rack</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/lynq.png" alt="Lynq">
+          </div>
+          <span>Lynq</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/MOWS/Logo MOWS-10 1.png" alt="MOWS">
+          </div>
+          <span>MOWS</span>
+        </div>
+        <!-- Group 2 (Duplicate for Seamless Loop) -->
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Zeco.png" alt="Kerlytix">
+          </div>
+          <span>ZECOWOOD</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Kerlytix Logo Icon PNG.png" alt="Kerlytix">
+          </div>
+          <span>Kerlytix</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/ORIGIN.png" alt="Origin Rack">
+          </div>
+          <span>Origin Rack</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/lynq.png" alt="Lynq">
+          </div>
+          <span>Lynq</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/MOWS/Logo MOWS-10 1.png" alt="MOWS">
+          </div>
+          <span>MOWS</span>
+        </div>
+        <!-- Group 3 (Duplicate for Seamless Loop) -->
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Zeco.png" alt="Kerlytix">
+          </div>
+          <span>ZECOWOOD</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/Kerlytix Logo Icon PNG.png" alt="Kerlytix">
+          </div>
+          <span>Kerlytix</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/ORIGIN.png" alt="Origin Rack">
+          </div>
+          <span>Origin Rack</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/lynq.png" alt="Lynq">
+          </div>
+          <span>Lynq</span>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-logo-wrapper">
+            <img src="assets/images/MOWS/Logo MOWS-10 1.png" alt="MOWS">
+          </div>
+          <span>MOWS</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ─── PROCESS ─── -->
+  <section class="process" id="process">
+    <div class="reveal">
+      <div class="section-label">Our Process</div>
+      <h1 class="section-title howwe">HOW WE <span style="color:var(--orange)"><br>WORK</span> </h1>
+      <p class="section-subtitle">A battle-tested framework that takes brands from ground zero to orbit.</p>
+    </div>
+    <div class="process-timeline reveal">
+      <div class="process-step">
+        <div class="process-step-inner">
+          <div class="step-number">01</div>
+          <h3>Discover</h3>
+          <p>Deep-dive into your brand DNA, market landscape, and untapped opportunities.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner">
+          <div class="step-number">02</div>
+          <h3>Strategize</h3>
+          <p>Architect a data-backed blueprint custom-built for explosive, sustainable growth.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner">
+          <div class="step-number">03</div>
+          <h3>Create</h3>
+          <p>Design and produce assets that command attention and convert at every touchpoint.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner">
+          <div class="step-number">04</div>
+          <h3>Scale</h3>
+          <p>Launch, optimize, and scale campaigns that turn momentum into market dominance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="testimonials" id="testimonials">
+    <div class="reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title wordsmatter">Words That <span style="color:var(--orange)"><br>Matter</span></h2>
+      <p class="section-subtitle">What our partners say about working with theCubStudio.</p>
+    </div>
+    <div class="testimonial-carousel-container reveal">
+      <button class="carousel-nav prev" id="prevTestimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <div class="testimonial-slide active">
+          <h3 class="quote-text">theCubStudio didn't just redesign our brand — they reimagined our entire market
+            position. Results were beyond projection.</h3>
+          <div class="author-info">
+            <div class="author-avatar">
+              <img src="assets/images/MSK04527 1.jpg" alt="Shahil valamboor">
+            </div>
+            <div class="author-details">
+              <span class="author-name">SHAHIL VALAMBOOR</span>
+              <span class="author-role">CEO, MOWS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide">
+          <h3 class="quote-text">Our revenue 5x'd in 6 months. Their performance marketing team is obsessive about
+            optimization. Absolute game changers.</h3>
+          <div class="author-info">
+            <div class="author-avatar">
+              <img src="assets/images/IMG_1823.jpg" alt="MOHAMMED SHADIN">
+            </div>
+            <div class="author-details">
+              <span class="author-name">MOHAMMED SHADIN</span>
+              <span class="author-role">Founder, KERLYTIX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide">
+          <h3 class="quote-text">From zero to 100K followers with a community that actually engages. theCubStudio builds
+            movements, not just audiences.</h3>
+          <div class="author-info">
+            <div class="author-avatar">
+              <img src="assets/images/Screenshot 2026-05-04 at 9.22.37 PM.png" alt="MOHAMMED SHAMEEL">
+            </div>
+            <div class="author-details">
+              <span class="author-name">MOHAMMED SHAMEEL</span>
+              <span class="author-role">Co-Founder, LYNQ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-nav next" id="nextTestimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ─── -->
+  <section class="final-cta" id="contact">
+    <div class="reveal">
+      <h2 class="break">Ready to Break Free<br>from <span>Ordinary</span>?</h2>
+      <p>Your brand deserves to defy gravity. Let's build something that the market has never seen before.</p>
+      <a href="#" class="cta-button" id="triggerContact">
+        Let's Talk <span>→</span>
+        <div class="cta-glow"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer" id="footer">
+    <div class="footer-top-grid">
+      <div class="f-info-section">
+        <h2>Smarter Branding</h2>
+        <p>Breaking conventional growth limits. Creative. Unique. Branding. <br>That scales beyond expectations.</p>
+
+        <div class="f-contact-social">
+          <a href="mailto:hellocubstudio@gmail.com" class="f-email-minimal">hellocubstudio@gmail.com</a>
+          <div class="f-social-icons">
+            <a href="https://www.instagram.com/thecub.studio/" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://www.x.com" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                </path>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-links-section">
+        <div class="f-col">
+          <h3>Company</h3>
+          <a href="#hero">Home</a>
+          <a href="#about">Studio</a>
+          <a href="#services">Services</a>
+        </div>
+        <div class="f-col">
+          <h3>Legal</h3>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-giant-name">
+      theCubStudio
+    </div>
+  </footer>
+
+  <!-- ─── CONTACT MODAL ─── -->
+  <div class="contact-modal" id="contactModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <h2>LET'S <span style="color:var(--orange)">TALK</span></h2>
+        <p>Tell us about your brand vision and project goals.</p>
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/mlgznode" method="POST">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your Company Name">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service">
+              <option value="branding">Branding & Identity</option>
+              <option value="content">Content Creation</option>
+              <option value="marketing">Digital Transformation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Project Description</label>
+          <textarea id="description" name="description" rows="4"
+            placeholder="Tell us more about what you need on a form of contact..." required></textarea>
+        </div>
+        <button type="submit" class="submit-button cta-button">
+          Send Message <span>→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
