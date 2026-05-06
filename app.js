@@ -90,6 +90,62 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
         closeModal();
       }
     });
+
+    // ─── AJAX Form Submission ───
+    const contactForm = document.getElementById('contactForm');
+    const notificationSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector('.submit-button');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            notificationSound.play().catch(() => {}); // Play sound
+            showToast('Message sent! We\'ll be in touch soon.');
+            contactForm.reset();
+            setTimeout(closeModal, 2000);
+          } else {
+            showToast('Oops! Something went wrong.', 'error');
+          }
+        } catch (error) {
+          showToast('Connection error. Please try again.', 'error');
+        } finally {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  }
+
+  // Helper for toast notifications
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.innerHTML = `<div class="toast-content"><span>${message}</span></div>`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('visible'), 10);
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
   }
 
   // ─── Theme Toggle ───
