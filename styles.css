@@ -439,7 +439,7 @@ footer {
   letter-spacing: -0.05em;
   margin-bottom: 4rem;
   text-transform: uppercase;
-  transition: transform 0.1s ease-out;
+  transition: transform 0.09s ease-out;
 }
 
 .hero h1 {
