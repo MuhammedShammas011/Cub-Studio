@@ -737,10 +737,14 @@ section {
   color: #fff;
 }
 
-.huge-title.scroll-reveal-text .reveal-word.active,
-.howwe.scroll-reveal-text .reveal-word.active,
-.wordsmatter.scroll-reveal-text .reveal-word.active {
+/* Keep Services orange */
+.huge-title.scroll-reveal-text .reveal-word.active {
   color: var(--orange);
+}
+
+/* Ensure words inside orange spans in HTML stay orange when active */
+[style*="color:var(--orange)"] .reveal-word.active {
+  color: var(--orange) !important;
 }
 
 [data-theme="light"] .reveal-word {
