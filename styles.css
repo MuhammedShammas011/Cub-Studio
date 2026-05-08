@@ -737,6 +737,12 @@ section {
   color: #fff;
 }
 
+.huge-title.scroll-reveal-text .reveal-word.active,
+.howwe.scroll-reveal-text .reveal-word.active,
+.wordsmatter.scroll-reveal-text .reveal-word.active {
+  color: var(--orange);
+}
+
 [data-theme="light"] .reveal-word {
   color: rgba(0, 0, 0, 0.1);
 }
@@ -2309,4 +2315,56 @@ body {
   border-color: rgba(0, 0, 0, 0.05);
   color: #1a1a1a;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Custom Cursor ── */
+@media (min-width: 901px) {
+  body, a, button, .modal-trigger, .carousel-nav, .sr-link, .f-col a, .f-social-icons a {
+    cursor: none !important;
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  }
+
+  .cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 75, 0, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+  }
+
+  .cursor-hover .cursor-dot {
+    opacity: 0;
+  }
+
+  .cursor-hover .cursor-outline {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 75, 0, 0.1);
+    border-color: var(--orange);
+  }
+}
+
+@media (max-width: 900px) {
+  .custom-cursor {
+    display: none;
+  }
 }

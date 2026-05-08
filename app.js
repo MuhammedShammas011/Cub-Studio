@@ -222,30 +222,33 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
     });
   });
 
-  // ─── About Section Word Reveal Animation ───
-  const aboutHeadline = document.querySelector('.scroll-reveal-text');
-  const revealWords = document.querySelectorAll('.reveal-word');
+  // ─── Section Heading Word Reveal Animation ───
+  const revealHeaders = document.querySelectorAll('.scroll-reveal-text');
 
-  if (aboutHeadline && revealWords.length > 0) {
+  if (revealHeaders.length > 0) {
     window.addEventListener('scroll', () => {
-      const headlineRect = aboutHeadline.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // Calculate progress: 0 when headline is at 80% of viewport, 1 when at 20%
-      const startTrigger = viewportHeight * 0.85;
-      const endTrigger = viewportHeight * 0.25;
+      revealHeaders.forEach(header => {
+        const headerRect = header.getBoundingClientRect();
+        const revealWords = header.querySelectorAll('.reveal-word');
 
-      const progress = (startTrigger - headlineRect.top) / (startTrigger - endTrigger);
-      const clampedProgress = Math.max(0, Math.min(1, progress));
+        // Calculate progress: 0 when headline is at 90% of viewport, 1 when at 30%
+        const startTrigger = viewportHeight * 0.9;
+        const endTrigger = viewportHeight * 0.3;
 
-      revealWords.forEach((word, index) => {
-        // Distribute activation across the scroll progress
-        const activationPoint = (index / (revealWords.length - 1)) * 0.8;
-        if (clampedProgress > activationPoint) {
-          word.classList.add('active');
-        } else {
-          word.classList.remove('active');
-        }
+        const progress = (startTrigger - headerRect.top) / (startTrigger - endTrigger);
+        const clampedProgress = Math.max(0, Math.min(1, progress));
+
+        revealWords.forEach((word, index) => {
+          // Distribute activation across the scroll progress
+          const activationPoint = (index / (revealWords.length)) * 0.8;
+          if (clampedProgress > activationPoint) {
+            word.classList.add('active');
+          } else {
+            word.classList.remove('active');
+          }
+        });
       });
     });
   }
@@ -342,6 +345,54 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
     });
   }, { threshold: 0.5 });
   counters.forEach(el => counterObserver.observe(el));
+
+  // ─── Custom Cursor Logic ───
+  const cursorDot = document.querySelector('.cursor-dot');
+  const cursorOutline = document.querySelector('.cursor-outline');
+  const cursorWrapper = document.querySelector('.custom-cursor');
+
+  if (cursorDot && cursorOutline && window.innerWidth > 900) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Update dot immediately
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+
+    const animateCursor = () => {
+      // Smooth interpolation (lerp) for the outer ring
+      outlineX += (mouseX - outlineX) * 0.15;
+      outlineY += (mouseY - outlineY) * 0.15;
+
+      cursorOutline.style.left = `${outlineX}px`;
+      cursorOutline.style.top = `${outlineY}px`;
+
+      requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+
+    const interactiveElements = document.querySelectorAll('a, button, .modal-trigger, .carousel-nav, .logo-hover-wrap, .service-row, .about-feature');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursorWrapper.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => cursorWrapper.classList.remove('cursor-hover'));
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursorDot.style.opacity = '0';
+      cursorOutline.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      cursorDot.style.opacity = '1';
+      cursorOutline.style.opacity = '1';
+    });
+  }
 
   // ─── 3D Cursor Tilt on Cards ───
   document.querySelectorAll('.service-row, .testimonial-card').forEach(card => {
