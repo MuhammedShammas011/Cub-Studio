@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
   // ─── Slide Menu Toggle ───
   const hamburger = document.getElementById('hamburger');
   const slideMenu = document.getElementById('slideMenu');
+  const slideClose = document.getElementById('slideClose');
+
+  const closeSlideMenu = () => {
+    slideMenu.classList.remove('active');
+    const spans = hamburger.querySelectorAll('span');
+    spans[0].style.transform = '';
+    spans[1].style.width = '20px';
+    spans[1].style.transform = '';
+  };
 
   if (hamburger && slideMenu) {
     hamburger.addEventListener('click', () => {
@@ -21,22 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
         spans[1].style.width = '32px';
         spans[1].style.transform = 'translateY(-4px) rotate(-45deg)';
       } else {
-        spans[0].style.transform = '';
-        spans[1].style.width = '20px';
-        spans[1].style.transform = '';
+        closeSlideMenu();
       }
     });
+
+    slideClose?.addEventListener('click', closeSlideMenu);
 
     // Close menu when clicking a link
     const slideLinks = slideMenu.querySelectorAll('a');
     slideLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        slideMenu.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = '';
-        spans[1].style.width = '20px';
-        spans[1].style.transform = '';
-      });
+      link.addEventListener('click', closeSlideMenu);
     });
   }
 
@@ -568,3 +571,101 @@ function initHero3D() {
   }
   animate();
 }
+
+// ─── Text Bulge Effect ───
+(function initBulgeEffect() {
+  const heading = document.getElementById('bulge-text');
+  if (!heading) return;
+
+  // Split every text node into individual char spans
+  function splitTextNodes(el) {
+    [...el.childNodes].forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        [...node.textContent].forEach(char => {
+          const span = document.createElement('span');
+          span.className = 'bulge-char';
+          span.textContent = char === ' ' ? '\u00A0' : char; // non-breaking space keeps width
+          span.dataset.isSpace = char === ' ' ? '1' : '0';
+          frag.appendChild(span);
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+        splitTextNodes(node);
+      }
+    });
+  }
+
+  splitTextNodes(heading);
+
+  const chars = [...heading.querySelectorAll('.bulge-char')];
+
+  // Apply base styles once (GPU-friendly)
+  chars.forEach(char => {
+    char.style.display = 'inline-block';
+    char.style.transformOrigin = 'center bottom';
+    char.style.willChange = 'transform';
+    // Extra visual gap for spaces
+    if (char.dataset.isSpace === '1') {
+      char.style.minWidth = '0.35em';
+    }
+  });
+
+  const MAX_SCALE = 1.55;
+  const RADIUS = 140;       // px influence radius
+  let rafId = null;
+  let currentScales = new Array(chars.length).fill(1);
+  let targetScales  = new Array(chars.length).fill(1);
+  const LERP = 0.14;        // interpolation speed — higher = snappier
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick() {
+    let needsUpdate = false;
+
+    chars.forEach((char, i) => {
+      const next = lerp(currentScales[i], targetScales[i], LERP);
+      if (Math.abs(next - currentScales[i]) > 0.0005) {
+        currentScales[i] = next;
+        needsUpdate = true;
+      } else {
+        currentScales[i] = targetScales[i];
+      }
+      char.style.transform = `scale(${currentScales[i]})`;
+    });
+
+    if (needsUpdate) rafId = requestAnimationFrame(tick);
+    else rafId = null;
+  }
+
+  function startLoop() {
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }
+
+  function onMouseMove(e) {
+    const mx = e.clientX;
+    const my = e.clientY;
+
+    chars.forEach((char, i) => {
+      const rect = char.getBoundingClientRect();
+      const cx = rect.left + rect.width  / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dist = Math.hypot(mx - cx, my - cy);
+
+      // Smooth cosine falloff — rounder wave than quadratic
+      const t = Math.max(0, 1 - dist / RADIUS);
+      const eased = (1 - Math.cos(t * Math.PI)) / 2; // 0 → 1 cosine ease
+      targetScales[i] = 1 + (MAX_SCALE - 1) * eased;
+    });
+
+    startLoop();
+  }
+
+  function onMouseLeave() {
+    targetScales.fill(1);
+    startLoop();
+  }
+
+  heading.addEventListener('mousemove', onMouseMove);
+  heading.addEventListener('mouseleave', onMouseLeave);
+})();
