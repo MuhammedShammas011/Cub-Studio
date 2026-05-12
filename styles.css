@@ -796,6 +796,14 @@ section {
   transition: transform 0.1s ease-out;
 }
 
+@media (max-width: 768px) {
+  .howwe,
+  .wordsmatter {
+    font-size: clamp(3.5rem, 18vw, 6rem);
+    letter-spacing: -3px;
+  }
+}
+
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-secondary);
@@ -1319,22 +1327,36 @@ section {
 }
 
 @media (max-width: 768px) {
+  .services-modern {
+    padding: 4rem 0;
+  }
+
+  .services-hero {
+    margin-bottom: 1rem;
+  }
+
   .services-container {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .services-ticker {
     display: none;
   }
 
+  /* Hide the video preview panel entirely on mobile — no content, no space */
+  .services-left {
+    display: none;
+  }
+
   .service-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 2rem 0;
+    gap: 0.75rem;
+    padding: 1.75rem 0;
   }
 
   .sr-num {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .sr-link {
