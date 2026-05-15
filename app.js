@@ -175,45 +175,40 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
   let isAnimating = false;
 
   if (slides.length > 0) {
-    // Initialise first slide
     slides[0].classList.add('active');
 
-    const showSlide = (index, direction = 'next') => {
+    const showSlide = (index) => {
       if (isAnimating || index === currentSlide) return;
       isAnimating = true;
 
       const outgoing = slides[currentSlide];
       const incoming = slides[index];
 
-      // Set incoming start position (above or below depending on direction)
-      incoming.classList.remove('active', 'exit', 'exit-prev', 'enter-prev');
-      if (direction === 'prev') incoming.classList.add('enter-prev');
+      // Incoming starts at scale(0.94) opacity(0)
+      incoming.classList.remove('active', 'exit');
       incoming.style.visibility = 'visible';
 
-      // Force reflow so the starting state is painted before transition
+      // Force reflow so starting state renders first
       incoming.getBoundingClientRect();
 
-      // Exit outgoing
+      // Outgoing zooms up to scale(1.06) and fades out
       outgoing.classList.remove('active');
-      outgoing.classList.add(direction === 'next' ? 'exit' : 'exit-prev');
+      outgoing.classList.add('exit');
 
-      // Enter incoming
-      requestAnimationFrame(() => {
-        incoming.classList.remove('enter-prev');
-        incoming.classList.add('active');
-      });
+      // Incoming scales up to 1 and fades in simultaneously
+      requestAnimationFrame(() => incoming.classList.add('active'));
 
       currentSlide = index;
 
       setTimeout(() => {
-        outgoing.classList.remove('exit', 'exit-prev');
+        outgoing.classList.remove('exit');
         outgoing.style.visibility = '';
         isAnimating = false;
-      }, 700);
+      }, 800);
     };
 
-    const nextSlide = () => showSlide((currentSlide + 1) % slides.length, 'next');
-    const prevSlide = () => showSlide((currentSlide - 1 + slides.length) % slides.length, 'prev');
+    const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
+    const prevSlide = () => showSlide((currentSlide - 1 + slides.length) % slides.length);
 
     let slideInterval = setInterval(nextSlide, 4000);
     const resetInterval = () => {
