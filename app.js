@@ -172,39 +172,57 @@ document.addEventListener('DOMContentLoaded', () => {  // ─── Hero Entranc
   const prevBtn = document.getElementById('prevTestimonial');
   const nextBtn = document.getElementById('nextTestimonial');
   let currentSlide = 0;
+  let isAnimating = false;
 
   if (slides.length > 0) {
-    const showSlide = (index) => {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[index].classList.add('active');
+    // Initialise first slide
+    slides[0].classList.add('active');
+
+    const showSlide = (index, direction = 'next') => {
+      if (isAnimating || index === currentSlide) return;
+      isAnimating = true;
+
+      const outgoing = slides[currentSlide];
+      const incoming = slides[index];
+
+      // Set incoming start position (above or below depending on direction)
+      incoming.classList.remove('active', 'exit', 'exit-prev', 'enter-prev');
+      if (direction === 'prev') incoming.classList.add('enter-prev');
+      incoming.style.visibility = 'visible';
+
+      // Force reflow so the starting state is painted before transition
+      incoming.getBoundingClientRect();
+
+      // Exit outgoing
+      outgoing.classList.remove('active');
+      outgoing.classList.add(direction === 'next' ? 'exit' : 'exit-prev');
+
+      // Enter incoming
+      requestAnimationFrame(() => {
+        incoming.classList.remove('enter-prev');
+        incoming.classList.add('active');
+      });
+
+      currentSlide = index;
+
+      setTimeout(() => {
+        outgoing.classList.remove('exit', 'exit-prev');
+        outgoing.style.visibility = '';
+        isAnimating = false;
+      }, 700);
     };
 
-    const nextSlide = () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    };
+    const nextSlide = () => showSlide((currentSlide + 1) % slides.length, 'next');
+    const prevSlide = () => showSlide((currentSlide - 1 + slides.length) % slides.length, 'prev');
 
-    const prevSlide = () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    };
-
-    nextBtn?.addEventListener('click', () => {
-      nextSlide();
-      resetInterval();
-    });
-
-    prevBtn?.addEventListener('click', () => {
-      prevSlide();
-      resetInterval();
-    });
-
-    let slideInterval = setInterval(nextSlide, 3000);
-
+    let slideInterval = setInterval(nextSlide, 4000);
     const resetInterval = () => {
       clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, 3000);
+      slideInterval = setInterval(nextSlide, 4000);
     };
+
+    nextBtn?.addEventListener('click', () => { nextSlide(); resetInterval(); });
+    prevBtn?.addEventListener('click', () => { prevSlide(); resetInterval(); });
   }
 
   // ─── Cursor-Following Heading Animation ───

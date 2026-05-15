@@ -1772,14 +1772,53 @@ section {
   text-align: center;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(30px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(60px) scale(0.96);
+  filter: blur(8px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.7s;
+}
+
+.testimonial-slide.exit {
+  opacity: 0;
+  visibility: visible;
+  transform: translateY(-50px) scale(0.96);
+  filter: blur(10px);
+  pointer-events: none;
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0, 1, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 1, 1),
+    filter 0.5s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.testimonial-slide.exit-prev {
+  opacity: 0;
+  visibility: visible;
+  transform: translateY(50px) scale(0.96);
+  filter: blur(10px);
+  pointer-events: none;
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0, 1, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 1, 1),
+    filter 0.5s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.testimonial-slide.enter-prev {
+  transform: translateY(-60px) scale(0.96);
+  filter: blur(8px);
 }
 
 .testimonial-slide.active {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quote-text {
